@@ -8,6 +8,12 @@ class DataProvider extends Component {
         super(props);
         this.state = { 
             recipes: [],
+            inputValues: {
+                title: '',
+                picture: '',
+                ingredients: [{ name: '', amount: ''}],
+                description: ''
+            }
         };
     }
     componentDidMount(prevProps) {
@@ -18,6 +24,19 @@ class DataProvider extends Component {
         return (
             <DataContext.Provider value={{
                 state: this.state,
+                handleInputChange: (name, input, userIndex) => {
+                    if (name === "name" || name === "amount") {
+                        const copy = {...this.state.inputValues}
+                        copy.ingredients[0][name] = input;
+                    } else {
+                        let inputValues = {...this.state.inputValues, [name]: input}
+                        this.setState({ inputValues: inputValues });
+                    }
+                }, 
+                handleSubmitNew: () => {
+                    // axios.post()
+                    console.log(this.state.inputValues)
+                }
             }}>
                 {this.props.children}
             </DataContext.Provider>

@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
 
+import { DataContext } from '../DataProvider/DataProvider';
+
 class RecipeForm extends Component {
     render() {
         return (
-            <form>
-                Title: <input defaultValue={this.props.title} /><br />
-                Image: <input defaultValue={this.props.image} /><br />
-                <div>Ingredients:
-                    {this.props.ingredients.map(i => {
-                        return (
-                            <div key={i.name}>
-                                Name:<input defaultValue={i.name} /><br />
-                                Amount:<input defaultValue={i.amount} />
+            <DataContext.Consumer>
+                { context => {
+                    return (
+                        <form>
+                            Title: <input defaultValue={this.props.title} onChange={(e) => context.handleInputChange("title", e.target.value)} /><br />
+                            Image: <input defaultValue={this.props.image} onChange={(e) => context.handleInputChange("picture", e.target.value)}/><br />
+                            <div>Ingredients:
+                                {this.props.ingredients.map((i, index) => {
+                                    return (
+                                        <div key={i.name}>
+                                            Name:<input defaultValue={i.name} onChange={(e) => context.handleInputChange("name", e.target.value, index)}/><br />
+                                            Amount:<input defaultValue={i.amount} onChange={(e) => context.handleInputChange("amount", e.target.value, index)}/>
+                                        </div>
+                                    )
+                                })}
                             </div>
-                        )
-                    })}
-                </div>
-                Description: <textarea defaultValue={this.props.description} />
-            </form>
+                            Description: <textarea defaultValue={this.props.description} onChange={(e) => context.handleInputChange("description", e.target.value)}/>
+                            <button onClick={(e) => { e.preventDefault(); context.handleSubmitNew()}}>submit</button>
+                        </form>
+                    )
+                }}
+            </DataContext.Consumer>
         );
     }
 }

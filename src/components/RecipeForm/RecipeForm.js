@@ -14,12 +14,36 @@ class RecipeForm extends Component {
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value})
     }
+    handleInputChange = (e, index) => {
+        const copy = [...this.state.ingredientInput]
+        copy[index][e.target.name] = e.target.value;
+        this.setState({ ingredientInput: copy })
+    }
     render() {
         return (
             <form>
                 <div>title<input name="titleInput" value={this.state.titleInput} onChange={this.handleChange} /></div>
                 <div>image<input name="imageInput" value={this.state.imageInput} onChange={this.handleChange} /></div>
+                <div>Ingredients:
+                    {this.state.ingredientInput.map((i, index) => {
+                        return (
+                            <div key={index}>
+                                <input name="name" value={i.name} onChange={(e) => this.handleInputChange(e, index)} />
+                                <input name="amount" value={i.amount} onChange={(e) => this.handleInputChange(e, index)} />
+                            </div>
+                        )
+                    })}
+                    {/* {this.state.ingredientInput.map((i,index) => {
+                        return (
+                            <div key={i.name}>
+                                <input name="name" value={i.name} onChange={(e) => this.handleInputChange(e, index)} />
+                                <input name="amount" value={i.amount} onChange={(e) => this.handleInputChange(e, index)} />
+                            </div>
+                        )
+                    })} */}
 
+
+                </div>
                 <div>description<input name="descriptionInput" value={this.state.descriptionInput} onChange={this.handleChange} /></div>
             </form>
         )

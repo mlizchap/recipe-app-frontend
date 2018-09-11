@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import NewRecipe from '../NewRecipe/NewRecipe';
 import RecipeList from '../RecipeList/RecipeList';
-import { RecipeDetail, RecipeDetailData } from '../RecipeDetail/RecipeDetail';
+import {RecipeDetailData} from '../RecipeDetailData/RecipeDetailData';
 
 class App extends Component {
     render() {

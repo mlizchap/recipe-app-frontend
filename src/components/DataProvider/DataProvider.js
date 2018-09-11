@@ -38,7 +38,14 @@ class DataProvider extends Component {
                 },
                 addIngredient: (e, i) => {
                     e.preventDefault();
-                    console.log(this.state.inputValues.ingredients)
+                    const { ingredients } = this.state.inputValues;
+                    const copy = {...this.state.inputValues}
+                    copy.ingredients = [...copy.ingredients, i]
+                    this.setState({ inputValues: copy })
+                    console.log(copy)
+
+                    //this.setState({ inputValues: {...this.state.inputValues, ingredients: [...this.state.inputValues.ingredients, i]} })
+                    // console.log(i)
                 }
             }}>
                 {this.props.children}

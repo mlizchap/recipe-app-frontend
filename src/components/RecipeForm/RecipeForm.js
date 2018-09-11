@@ -7,9 +7,9 @@ const UserInput = (props) => {
         <DataContext.Consumer>
             {context => {
                 return (
-                    <div>
+                    <React.Fragment>
                         {props.name}: <input defaultValue={props.default} onChange={(e) => context.handleInputChange(`${props.name}`, e.target.value)} />
-                    </div>
+                    </React.Fragment>
                 )
             }}
         </DataContext.Consumer>
@@ -17,35 +17,42 @@ const UserInput = (props) => {
 }
 
 UserInput.defaultProps = {
-    defaultValue: ""
+    defaultValue: "x"
 }
 
 class RecipeForm extends Component {
-
     render() {
         return (
             <DataContext.Consumer>
                 { context => {
                     return (
                         <form>
-                            <UserInput name="title" />
-                            <UserInput name="image" />
+                            <UserInput name="title" /><br />
+                            <UserInput name="image" /><br />
                             <div>Ingredients:
-                                {this.props.ingredients.map((i) => {
+                                {context.state.inputValues.ingredients.map((i, index) => {
                                     return (
-                                        <div key={i.name}>
-                                            <UserInput name="name" />
-                                            <UserInput name="amount" />
-                                            <button 
-                                                onClick={(e) => context.addIngredient(e, i)}>
-                                                +
-                                            </button>
+                                        <div key={index}>
+                                            <UserInput name="name" defaultValue={i.name} />
+                                            <UserInput name="amount" defaultValue={i.amount} />
+                                            {(context.state.inputValues.ingredients.length > 1) ? 
+                                                <button>-</button> : null
+                                            }
+                                            {(index === context.state.inputValues.ingredients.length - 1) ?
+                                                <button onClick={(e) => context.addIngredient(e, i)}>+</button> : null
+                                            }
                                         </div>
                                     )
                                 })}
                             </div>
                                 <UserInput name="description" />
-                                <button onClick={(e) => { e.preventDefault(); context.handleSubmitNew()}}>submit</button>
+                                <div>
+                                    <button onClick={(e) => { 
+                                        e.preventDefault(); 
+                                        context.handleSubmitNew()}}>
+                                            submit
+                                    </button>
+                                </div>
                         </form>
                     )
                 }}

@@ -2,33 +2,60 @@ import React, { Component } from 'react';
 
 import { DataContext } from '../DataProvider/DataProvider';
 
+const UserInput = (props) => {
+    return (
+        <DataContext.Consumer>
+            {context => {
+                return (
+                    <div>
+                        {props.name}: <input defaultValue={props.default} onChange={(e) => context.handleInputChange(`${props.name}`, e.target.value)} />
+                    </div>
+                )
+            }}
+        </DataContext.Consumer>
+    )
+}
+
+UserInput.defaultProps = {
+    defaultValue: ""
+}
+
 class RecipeForm extends Component {
+
     render() {
         return (
             <DataContext.Consumer>
                 { context => {
                     return (
                         <form>
-                            Title: <input defaultValue={this.props.title} onChange={(e) => context.handleInputChange("title", e.target.value)} /><br />
-                            Image: <input defaultValue={this.props.image} onChange={(e) => context.handleInputChange("picture", e.target.value)}/><br />
+                            <UserInput name="title" />
+                            <UserInput name="image" />
                             <div>Ingredients:
-                                {this.props.ingredients.map((i, index) => {
+                                {this.props.ingredients.map((i) => {
                                     return (
                                         <div key={i.name}>
-                                            Name:<input defaultValue={i.name} onChange={(e) => context.handleInputChange("name", e.target.value, index)}/><br />
-                                            Amount:<input defaultValue={i.amount} onChange={(e) => context.handleInputChange("amount", e.target.value, index)}/>
+                                            <UserInput name="name" />
+                                            <UserInput name="amount" />
+                                            <button 
+                                                onClick={(e) => context.addIngredient(e, i)}>
+                                                +
+                                            </button>
                                         </div>
                                     )
                                 })}
                             </div>
-                            Description: <textarea defaultValue={this.props.description} onChange={(e) => context.handleInputChange("description", e.target.value)}/>
-                            <button onClick={(e) => { e.preventDefault(); context.handleSubmitNew()}}>submit</button>
+                                <UserInput name="description" />
+                                <button onClick={(e) => { e.preventDefault(); context.handleSubmitNew()}}>submit</button>
                         </form>
                     )
                 }}
             </DataContext.Consumer>
         );
     }
+}
+
+RecipeForm.defaultProps = {
+    ingredients: [{ name: "", amount: ""}]
 }
 
 export default RecipeForm;

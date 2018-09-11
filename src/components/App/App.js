@@ -11,7 +11,7 @@ class App extends Component {
             <div>
                 <h2>Recipe App</h2>
                 <Switch>
-                    <Route path="/form" render={ () => <RecipeForm title="" image="" ingredients={ [{name: "", amount: ""}] } description="" /> } />
+                    <Route path="/form" render={ () => <RecipeForm /> } />
                     <Route path="/recipe/:name" component={RecipeDetailData} />
                     <Route path="/" component={RecipeList} />
                 </Switch>

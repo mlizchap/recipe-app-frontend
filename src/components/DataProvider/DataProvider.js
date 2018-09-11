@@ -34,8 +34,11 @@ class DataProvider extends Component {
                     }
                 }, 
                 handleSubmitNew: () => {
-                    // axios.post()
                     console.log(this.state.inputValues)
+                },
+                addIngredient: (e, i) => {
+                    e.preventDefault();
+                    console.log(this.state.inputValues.ingredients)
                 }
             }}>
                 {this.props.children}

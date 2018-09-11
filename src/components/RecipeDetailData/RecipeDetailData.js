@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import { DataContext } from '../DataProvider/DataProvider';
-import {RecipeDetail} from '../RecipeDetail/RecipeDetail';
+import RecipeDetail from '../RecipeDetail/RecipeDetail';
 
-export class RecipeDetailData extends Component {
+class RecipeDetailData extends Component {
     render() {
         return (
             <div>
@@ -19,3 +19,5 @@ export class RecipeDetailData extends Component {
         );
     }
 }
+
+export default RecipeDetailData;

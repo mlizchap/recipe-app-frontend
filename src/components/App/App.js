@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import NewRecipe from '../NewRecipe/NewRecipe';
+import RecipeForm from '../RecipeForm/RecipeForm';
 import RecipeList from '../RecipeList/RecipeList';
-import {RecipeDetailData} from '../RecipeDetailData/RecipeDetailData';
+import RecipeDetailData from '../RecipeDetailData/RecipeDetailData';
 
 class App extends Component {
     render() {
@@ -11,7 +11,7 @@ class App extends Component {
             <div>
                 <h2>Recipe App</h2>
                 <Switch>
-                    <Route path="/new" component={NewRecipe} />
+                    <Route path="/form" component={RecipeForm} />
                     <Route path="/recipe/:name" component={RecipeDetailData} />
                     <Route path="/" component={RecipeList} />
                 </Switch>

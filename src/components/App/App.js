@@ -13,11 +13,10 @@ const fakeData = {
         imgredients: [{name: 'xxx', amount: '2 cups'}, {name: 'fdasf', amount: '435'}],
         description: 'that',
     }],
-    userInput: {
-        title: 'this',
-        image: 'fasfsdfas',
-        ingredients: [{name: 'xxx', amount: '2 cups'}, {name: 'fdasf', amount: '435'}],
-        description: 'that',
+    handleSubmit: (e, values) => {
+        e.preventDefault()
+        console.log("SUBMIT")
+        console.log(values)
     }
 }
 
@@ -27,7 +26,7 @@ class App extends Component {
             <div>
                 <h2>Recipe App</h2>
                     <Switch>
-                        <Route path="/form" render={() => <RecipeForm userInput={fakeData.userInput} handleChange={() => console.log('text')}/>} />
+                        <Route path="/form" render={() => <RecipeForm handleSubmitNew={fakeData.handleSubmit} />} />
                         <Route path="/" render={() => <div>test</div>} />
                     </Switch>
             </div>

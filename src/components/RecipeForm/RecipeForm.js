@@ -26,7 +26,7 @@ class RecipeForm extends Component {
             <DataContext.Consumer>
                 { context => {
                     return (
-                        <form>
+                        <form onSubmit={context.handleSubmitNew}>
                             <UserInput name="title" /><br />
                             <UserInput name="image" /><br />
                             <div>Ingredients:
@@ -47,10 +47,8 @@ class RecipeForm extends Component {
                             </div>
                                 <UserInput name="description" />
                                 <div>
-                                    <button onClick={(e) => { 
-                                        e.preventDefault(); 
-                                        context.handleSubmitNew()}}>
-                                            submit
+                                    <button type="submit">
+                                        submit    
                                     </button>
                                 </div>
                         </form>

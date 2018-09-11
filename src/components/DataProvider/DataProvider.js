@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
+//import history from './history';
 
 export const DataContext = React.createContext();
 
@@ -33,19 +35,21 @@ class DataProvider extends Component {
                         this.setState({ inputValues: inputValues });
                     }
                 }, 
-                handleSubmitNew: () => {
-                    console.log(this.state.inputValues)
+                handleSubmitNew: (e) => {
+                    e.preventDefault();
+                    axios.post('https://arcane-lowlands-94627.herokuapp.com/api/new', { 
+                        title: this.state.inputValues.title,
+                        picture: this.state.inputValues.picture,
+                        ingredients: [this.state.inputValues.ingredients],
+                        description: this.state.inputValues.description
+                     })
+                     .then(() => this.props.history.push('/'))
                 },
                 addIngredient: (e, i) => {
                     e.preventDefault();
-                    const { ingredients } = this.state.inputValues;
                     const copy = {...this.state.inputValues}
                     copy.ingredients = [...copy.ingredients, i]
                     this.setState({ inputValues: copy })
-                    console.log(copy)
-
-                    //this.setState({ inputValues: {...this.state.inputValues, ingredients: [...this.state.inputValues.ingredients, i]} })
-                    // console.log(i)
                 }
             }}>
                 {this.props.children}
@@ -54,4 +58,4 @@ class DataProvider extends Component {
     }
 }
 
-export default DataProvider;
+export default withRouter(DataProvider);

@@ -7,20 +7,23 @@ class RecipeForm extends Component {
         this.state = { 
             title: "",
             picture: "",
-            ingredients: [{ name: '', amount: ''}],
+            ingredients: [{ ingredName: '', ingredAmount: '' }],
             description: ""
          };
     }
     renderIngredInput = (e) => {
         e.preventDefault();
-
-        this.setState({ ingredients: [...this.state.ingredients, {name: ''}]})
+        //console.log(e.targat)
+        this.setState({ ingredients: 
+            [ ...this.state.ingredients, 
+            {name: e.target.ingredientName.value, amount: e.target.ingredientAmount.value } ]
+        })
     }
     handleIngredChange = (userIndex, event) => {
         const ingredients = this.state.ingredients.map((i, stateIndex) => {
-            return (stateIndex === userIndex) ? {name: event.target.value, amount: 'x'} : i 
+            return (stateIndex === userIndex) ? { ...i, [event.target.name]: event.target.value } : i 
         })
-        this.setState({ ingredients })
+        this.setState({ ingredients }, () => console.log(this.state.ingredients))
     }
     handleChange = (event) => {
         this.setState({
@@ -36,7 +39,8 @@ class RecipeForm extends Component {
                     {this.state.ingredients.map((i,index) => {
                         return (
                             <div key={index}>
-                                <input name="ingredient" value={i.name} onChange={(e) => this.handleIngredChange(index, e)}/>
+                                Name: <input name="ingredName" value={i.name} onChange={(e) => this.handleIngredChange(index, e)}/>
+                                Amount: <input name="ingredAmount" value={i.amount} onChange={(e) => this.handleIngredChange(index, e)}/>
                                 <button onClick={this.renderIngredInput}>+</button>
                             </div>
                         )

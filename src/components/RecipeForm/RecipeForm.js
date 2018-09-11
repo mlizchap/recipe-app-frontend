@@ -23,7 +23,7 @@ class RecipeForm extends Component {
         const ingredients = this.state.ingredients.map((i, stateIndex) => {
             return (stateIndex === userIndex) ? { ...i, [event.target.name]: event.target.value } : i 
         })
-        this.setState({ ingredients }, () => console.log(this.state.ingredients))
+        this.setState({ ingredients })
     }
     handleChange = (event) => {
         this.setState({

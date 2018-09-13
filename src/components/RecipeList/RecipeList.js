@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import _ from 'lodash';
 
 class RecipeList extends Component {
     render() {
-        return (
-            <div>
-                {this.props.recipes.map(i => {
-                    return (
-                        <div key={i._id}>
-                            <button onClick={() => this.props.getCurrent(i._id)}>
-                            <Link to={`/recipe/${i._id}`}>{i.title}</Link>
-                            </button>
-                        </div>
-                    )
-                })}
-            </div>
-        );
+       return  _.map(this.props.recipes, (r => 
+            <Link to={`/recipe/${r._id}`} key={r._id}><div >{r.title}</div></Link>
+       ))
     }
 }
 

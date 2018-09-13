@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "custom-react-scripts": "0.2.2",
+    "lodash": "^4.17.11",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-router-dom": "^4.3.1"

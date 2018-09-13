@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 
 import RecipeList from '../RecipeList/RecipeList';
 import RecipeDetail from '../RecipeDetail/RecipeDetail';
 import RecipeForm from '../RecipeForm/RecipeForm';
-// import RecipeDetailData from '../RecipeDetailData/RecipeDetailData';
-// import { DataContext } from '../DataProvider/DataProvider';
+import { DataContext } from '../DataProvider/DataProvider';
 
 const fakeData = {
     recipes:
@@ -33,13 +32,6 @@ const fakeData = {
         for (let i in values) {
             console.log(values[i])
         }
-    },
-    defaultValues: {
-        title: 'yyy',
-        ingredients: [{name: 'xfd', amount: 'cds'}]
-    },
-    handleCurrent: (id) => {
-        console.log(id)
     }
 }
 
@@ -47,40 +39,29 @@ class App extends Component {
     render() {
         return (
             <div>
-                <h2>Recipe App</h2>
-                    <Switch>
-                        <Route path="/new" render={() => <RecipeForm handleSubmit={fakeData.handleSubmit}/>} />
-                        <Route path="/edit/:id" render={(props) => (
-                            <RecipeForm 
-                                handleSubmit={fakeData.handleSubmit} 
-                                defaultValues={fakeData.recipes[props.match.params.id]}
-                                {...props}
-                            />
-                        )} />
-                        <Route path="/recipe/:id" render={(props) => <RecipeDetail recipe={fakeData.recipes[props.match.params.id]} {...props}/>} />
-                        <Route path="/" render={() => <RecipeList recipes={fakeData.recipes} /> } />
-                    </Switch>
-                    {/* <Switch>
-                        <Route path="/practice" render={() => <RecipeForm1 />} />
-
-                        <Route path="/edit/:id" render={(props) => {
-                            const paramID = props.match.params.id;
-                            const item = fakeData.recipes.filter(i => i._id == paramID)[0]
-                            return <RecipeForm itemToEdit={item} handleSubmitNew={fakeData.handleSubmit} {...props} /> 
-                        }} />
-                        <Route path="/editForm/:id" render={() => {
-                            return <RecipeForm handleSubmitNew={fakeData.handleSubmit} />
-                        }} />
-                        <Route path="/form" render={() => {
-                            return <RecipeForm handleSubmitNew={fakeData.handleSubmit} />
-                        }} />
-
-                        // USED
-                        <Route path="/recipe/:id" component={(props) => <RecipeDetail recipes={fakeData.recipes} {...props}/>} />
-                        <Route path="/" render={() => <RecipeList recipes={fakeData.recipes} getCurrent={fakeData.handleCurrent}/>} />
-                    </Switch> */}
-
-                   
+                <h2><Link to="/">Recipe App</Link></h2>                    
+                    <DataContext.Consumer>
+                        {context => {
+                            {console.log(context)}
+                            return (
+                                // 
+                                <Switch>
+                                    {console.log(context.state)}
+                                    <Route path="/new" render={() => <RecipeForm handleSubmit={context.handleSubmit}/>} />
+                                    <Route path="/edit/:id" render={(props) => (
+                                        <RecipeForm 
+                                            handleSubmit={context.handleSubmit} 
+                                            defaultValues={context.state.recipes[props.match.params.id]}
+                                            {...props}
+                                        />
+                                    )} />
+                                    <Route path="/recipe/:id" render={(props) => <RecipeDetail recipe={context.state.recipes[props.match.params.id]} {...props}/>} />
+                                    <Route exact path="/" render={() => <RecipeList recipes={context.state.recipes} /> } />                           
+                                </Switch> 
+                            )      
+                        }}
+                    </DataContext.Consumer>
+                                      
             </div>
         );
     }

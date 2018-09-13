@@ -4,9 +4,19 @@ import _ from 'lodash';
 
 class RecipeList extends Component {
     render() {
-       return  _.map(this.props.recipes, (r => 
-            <Link to={`/recipe/${r._id}`} key={r._id}><div >{r.title}</div></Link>
-       ))
+        
+       return (
+           <div>
+               <div><Link to="/new">ADD NEW</Link></div>
+                { _.map(this.props.recipes, (r => {
+                    return (
+                        <Link to={`/recipe/${r._id}`} key={r._id}><div >{r.title}</div></Link>
+                    )})
+                )}
+            </div>
+       ) 
+            
+       
     }
 }
 

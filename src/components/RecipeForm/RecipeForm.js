@@ -1,4 +1,17 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+const InputField = (props) => {
+    return (
+        <div>{props.label}: 
+            <input  
+                name={props.label}
+                defaultValue={props.defaultValues[props.label]} 
+                onChange={props.handleChange} 
+            />
+        </div>
+    )
+}
 
 class RecipeForm extends Component {
     constructor(props) {
@@ -26,49 +39,36 @@ class RecipeForm extends Component {
         e.preventDefault();
         this.setState({ ingredients: [...this.state.ingredients, {name: '', amount: ''}]})
     }
-    removeIngredient = (e, i) => {
+    removeIngredient = (e, name) => {
         e.preventDefault();
-        const ingredients = this.state.ingredients.filter(elem => elem.name !== i.name);
-        this.setState({ ingredients: ingredients });
+        if (this.state.ingredients.length > 1) {
+            let ingredients = [...this.state.ingredients]
+            ingredients = this.state.ingredients.filter((elem, elemIndex) => elem.name !== name)
+            console.log(ingredients)
+            this.setState({ ingredients: ingredients });
+        }
     }
     render() {
         
         return (
             <form onSubmit={(e) => this.props.handleSubmit(e, this.state)}>
-                <div>title: 
-                    <input  
-                        name="title" 
-                        defaultValue={this.props.defaultValues.title} 
-                        onChange={this.handleChange} />
-                </div>
-                <div>image:
-                    <input 
-                        name="image" 
-                        defaultValue={this.props.defaultValues.image} 
-                        onChange={this.handleChange} />
-                </div>
+                <InputField label="title" handleChange={this.handleChange} {...this.props} />
+                <InputField label="image" handleChange={this.handleChange} {...this.props} />
                 <div>Ingredients:
-                    {(this.state.ingredients).map((i, index) => {
+                    {this.state.ingredients.map((i, index) => {
                         return (
                             <div key={index}>
-                                <input name="name" defaultValue={i.name} onChange={(e) => this.handleInputChange(e, index)} />
-                                <input name="amount" defaultValue={i.amount} onChange={(e) => this.handleInputChange(e, index)} />
-                                <button onClick={(e) => this.addIngredient(e)}>+</button>
-                                {(this.state.ingredients.length > 1) ?  
-                                    <button onClick={(e) =>this.removeIngredient(e, i)}>-</button> 
-                                    : null 
-                                }
+                                <input name="name" value={i.name} onChange={(e) => this.handleInputChange(e, index)} />
+                                <input name="amount" value={i.amount} onChange={(e) => this.handleInputChange(e, index)} />
+                                <button onClick={(e) =>this.removeIngredient(e, i.name)}>-</button> 
                             </div>
                         )
                     })}
                 </div>
-                <div>description:
-                    <textarea 
-                        name="description" 
-                        defaultValue={this.props.defaultValues.description} 
-                        onChange={this.handleChange} />
-                </div>
+                <button onClick={(e) => this.addIngredient(e)}>ADD INGREDIENT</button>
+                <InputField label="description" handleChange={this.handleChange} {...this.props} />
                 <button type="submit">SUBMIT</button>
+                <Link to="/">Cancel</Link>
             </form>
         )
     }

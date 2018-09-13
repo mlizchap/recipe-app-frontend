@@ -18,34 +18,14 @@ class RecipeDetail extends Component {
                         )
                     })}
                 <div>directions: {this.props.recipe.description}</div>
+
+                <div>
+                    <div><Link to="/">BACK</Link></div>
+                    <div><Link to={`/edit/${this.props.recipe._id}`}>EDIT</Link></div>
+                    <button onClick={this.props.handleDelete}>DELETE</button>
+                </div>
             </div>
         )
-        
-        
-        
-        //console.log(this.props)
-
-        // const recipe = this.props.recipes.filter(i => i._id == this.props.match.params.id)[0];
-        // return (
-        //     <div>
-        //         {console.log(recipe)}
-        //         <h2>{recipe.title}</h2>
-        //         <ul>Ingredients:
-        //             {recipe.ingredients.map(i => {
-        //                 return (
-        //                     <div key={i.name}>
-        //                         <li>{i.name} | {i.amount}</li>
-        //                     </div>
-        //                 )
-        //             })}
-        //         </ul>
-        //         <div>Directions:{recipe.description}</div>
-        //         <div>
-        //             <Link to="/">Back</Link>
-        //             <Link to={`/edit/${recipe._id}`}>Edit</Link>
-        //         </div>
-        //     </div>  
-        //);
     }
 }
 

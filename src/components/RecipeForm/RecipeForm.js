@@ -31,15 +31,25 @@ class RecipeForm extends Component {
     render() {
         
         return (
-            <form>
-                <div>title<input defaultValue={this.props.defaultTitle} name="titleInput" value={this.state.titleInput} onChange={this.handleChange} /></div>
-                <div>image<input name="imageInput" value={this.state.imageInput} onChange={this.handleChange} /></div>
+            <form onSubmit={(e) => this.props.handleSubmit(e, this.state)}>
+                <div>title: 
+                    <input  
+                        name="titleInput" 
+                        defaultValue={this.props.defaultValues.title || this.state.titleInput} 
+                        onChange={this.handleChange} />
+                </div>
+                <div>image:
+                    <input 
+                        name="imageInput" 
+                        defaultValue={this.state.imageInput} 
+                        onChange={this.handleChange} />
+                </div>
                 <div>Ingredients:
-                    {this.state.ingredientInput.map((i, index) => {
+                    {(this.props.defaultValues.ingredients || this.state.ingredientInput).map((i, index) => {
                         return (
                             <div key={index}>
-                                <input name="name" value={i.name} onChange={(e) => this.handleInputChange(e, index)} />
-                                <input name="amount" value={i.amount} onChange={(e) => this.handleInputChange(e, index)} />
+                                <input name="name" defaultValue={i.name} onChange={(e) => this.handleInputChange(e, index)} />
+                                <input name="amount" defaultValue={i.amount} onChange={(e) => this.handleInputChange(e, index)} />
                                 <button onClick={this.addIngredient}>+</button>
                                 {(this.state.ingredientInput.length > 1) ?  
                                     <button onClick={(e) =>this.removeIngredient(e, i)}>-</button> 
@@ -49,11 +59,26 @@ class RecipeForm extends Component {
                         )
                     })}
                 </div>
-                <div>description<input name="descriptionInput" value={this.state.descriptionInput} onChange={this.handleChange} /></div>
-                <button onClick={(e) => this.props.handleSubmitNew(e, this.state)}>SUBMIT</button>
+                <div>description:
+                    <input 
+                        name="descriptionInput" 
+                        defaultValue={this.state.descriptionInput} 
+                        onChange={this.handleChange} />
+                </div>
+                <button onClick={() => console.log(this.state.titleInput)} type="submit">SUBMIT</button>
             </form>
         )
     }
 }
+
+RecipeForm.defaultProps = {
+    defaultValues: {
+        titleInput: '',
+        imageInput: '',
+        ingredientInput: [{name: '', amount: ''}],
+        descriptionInput: '',
+    }
+}
+
 
 export default RecipeForm;

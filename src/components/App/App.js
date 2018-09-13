@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import RecipeList from '../RecipeList/RecipeList';
 import RecipeDetail from '../RecipeDetail/RecipeDetail';
-//import RecipeForm from '../RecipeForm/RecipeForm';
+import RecipeForm from '../RecipeForm/RecipeForm';
 // import RecipeDetailData from '../RecipeDetailData/RecipeDetailData';
 // import { DataContext } from '../DataProvider/DataProvider';
 
@@ -30,7 +30,12 @@ const fakeData = {
         },
     handleSubmit: (e, values) => {
         e.preventDefault()
+        // submit "values" to db
         console.log(values)
+    },
+    defaultValues: {
+        title: 'yyy',
+        ingredients: [{name: 'xfd', amount: 'cds'}]
     },
     handleCurrent: (id) => {
         console.log(id)
@@ -43,6 +48,14 @@ class App extends Component {
             <div>
                 <h2>Recipe App</h2>
                     <Switch>
+                        <Route path="/new" render={() => <RecipeForm handleSubmit={fakeData.handleSubmit}/>} />
+                        <Route path="/edit/:id" render={(props) => (
+                            <RecipeForm 
+                                handleSubmit={fakeData.handleSubmit} 
+                                defaultValues={fakeData.recipes[props.match.params.id]}
+                                {...props}
+                            />
+                        )} />
                         <Route path="/recipe/:id" render={(props) => <RecipeDetail recipe={fakeData.recipes[props.match.params.id]} {...props}/>} />
                         <Route path="/" render={() => <RecipeList recipes={fakeData.recipes} /> } />
                     </Switch>

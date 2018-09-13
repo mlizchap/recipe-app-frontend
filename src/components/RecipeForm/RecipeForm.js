@@ -29,9 +29,10 @@ class RecipeForm extends Component {
         this.setState({ ingredientInput: ingredients });
     }
     render() {
+        
         return (
             <form>
-                <div>title<input name="titleInput" value={this.state.titleInput} onChange={this.handleChange} /></div>
+                <div>title<input defaultValue={this.props.defaultTitle} name="titleInput" value={this.state.titleInput} onChange={this.handleChange} /></div>
                 <div>image<input name="imageInput" value={this.state.imageInput} onChange={this.handleChange} /></div>
                 <div>Ingredients:
                     {this.state.ingredientInput.map((i, index) => {

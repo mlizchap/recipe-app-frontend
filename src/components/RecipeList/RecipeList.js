@@ -8,7 +8,9 @@ class RecipeList extends Component {
                 {this.props.recipes.map(i => {
                     return (
                         <div key={i._id}>
-                            <Link to={`/recipe/${i.title}`}>{i.title}</Link>
+                            <button onClick={() => this.props.getCurrent(i._id)}>
+                            <Link to={`/recipe/${i._id}`}>{i.title}</Link>
+                            </button>
                         </div>
                     )
                 })}

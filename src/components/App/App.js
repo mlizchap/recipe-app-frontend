@@ -30,8 +30,9 @@ const fakeData = {
         },
     handleSubmit: (e, values) => {
         e.preventDefault()
-        // submit "values" to db
-        console.log(values)
+        for (let i in values) {
+            console.log(values[i])
+        }
     },
     defaultValues: {
         title: 'yyy',

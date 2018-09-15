@@ -51,7 +51,7 @@ class RecipeForm extends Component {
     render() {
         
         return (
-            <form onSubmit={(e) => this.props.handleSubmit(e, this.state)}>
+            <form onSubmit={(e) => {this.props.handleSubmit(e, this.state, this.props.match.params.id)}}>
                 <InputField label="title" handleChange={this.handleChange} {...this.props} />
                 <InputField label="image" handleChange={this.handleChange} {...this.props} />
                 <div>Ingredients:
@@ -67,7 +67,7 @@ class RecipeForm extends Component {
                 </div>
                 <button onClick={(e) => this.addIngredient(e)}>ADD INGREDIENT</button>
                 <InputField label="description" handleChange={this.handleChange} {...this.props} />
-                <button type="submit">SUBMIT</button>
+                <button type="submit">SAVE</button>
                 <Link to="/">Cancel</Link>
             </form>
         )

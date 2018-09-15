@@ -22,7 +22,7 @@ class RecipeDetail extends Component {
                 <div>
                     <div><Link to="/">BACK</Link></div>
                     <div><Link to={`/edit/${this.props.recipe._id}`}>EDIT</Link></div>
-                    <button onClick={this.props.handleDelete}>DELETE</button>
+                    <button onClick={() => this.props.handleDelete(this.props.recipe._id)}>DELETE</button>
                 </div>
             </div>
         )

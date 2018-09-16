@@ -9,7 +9,6 @@ class IngredientsField extends Component {
     }
     componentDidMount() {
         if (this.props.defaultValues.ingredients) {
-            console.log(this.props.defaultValues.ingredients)
             this.setState({ ingredients: this.props.defaultValues.ingredients });
         }
     }

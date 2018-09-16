@@ -9,8 +9,16 @@ class ImageField extends Component {
         super(props);
         this.state = { 
             urlToSend: '',
-            userInputURL: ''
+            userInputURL: '',
+            showEditImage: false
          };
+
+         this.imgElem = React.createRef();
+    }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps) {
+            this.setState({ showEditImage: true })
+        }
     }
     onImageDrop = (files) => {
         const CLOUDINARY_UPLOAD_PRESET = "ffusji9p";
@@ -37,17 +45,22 @@ class ImageField extends Component {
         console.log("enter")
         this.setState({ urlToSend: this.state.userInputURL})
     }
+    changePicture = () => {
+        this.setState({
+            userInputURL: '',
+            showEditImage: false
+        })
+    }
     render() {
         return (
             <div>
                 Image
-                {(this.state.urlToSend || this.props.imageToEdit) ? 
+                {(this.state.urlToSend || this.state.showEditImage) ? 
                     <div>
-                        <img src={`${this.props.imageToEdit || this.state.urlToSend}`} width="150px" />
-                        <div onClick={() => this.setState({ urlToSend: ''})}>change picture</div>
+                        <img ref={this.imgElem} src={`${this.props.imageToEdit || this.state.urlToSend}`} width="150px" />
+                        <div onClick={this.changePicture}>change picture</div>
                     </div>
-                    :
-                    <div>
+                    : <div>
                         Link: <input value={this.state.userInputURL} onChange={(e) => this.setState({ userInputURL: e.target.value})}/>
                         <button onClick={this.userInputEnter}>ENTER</button>
                         <div>OR</div>

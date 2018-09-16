@@ -46,9 +46,6 @@ class DataProvider extends Component {
             window.location.href = `http://localhost:3000`
         }
     }
-
-
-
     render() {
         return (
             <DataContext.Provider value={{

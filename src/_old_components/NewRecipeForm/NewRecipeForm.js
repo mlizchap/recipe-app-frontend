@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import TitleField from './TitleField/TitleField';
-import ImageField from './ImageField/ImageField';
-import IngredientsField from './IngredientsField/IngredientsField';
+const InputField = (props) => {
+    return (
+        <div>{props.label}: 
+            <input  
+                name={props.label}
+                defaultValue={props.defaultValues[props.label]} 
+                onChange={props.handleChange} 
+            />
+        </div>
+    )
+}
 
 class RecipeForm extends Component {
     constructor(props) {
@@ -13,7 +21,7 @@ class RecipeForm extends Component {
             title: '',
             image: '',
             ingredients: [{name: '', amount: ''}],
-            directions: '',
+            description: '',
         }
     }
     componentDidMount() {
@@ -22,22 +30,29 @@ class RecipeForm extends Component {
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value})
     }
-    handleIngredientInputChange = (e, index, state) => {
+    handleInputChange = (e, index) => {
         const copy = [...this.state.ingredients]
         copy[index][e.target.name] = e.target.value;
-        this.setState({ ingredients: copy }, () => console.log(this.state))
+        this.setState({ ingredients: copy })
     }
-    handlePictureUpload = (image) => {
-        this.setState({ image })
+    addIngredient = (e) => {
+        e.preventDefault();
+        this.setState({ ingredients: [...this.state.ingredients, {name: '', amount: ''}]})
+    }
+    removeIngredient = (e, name) => {
+        e.preventDefault();
+        if (this.state.ingredients.length > 1) {
+            let ingredients = [...this.state.ingredients]
+            ingredients = this.state.ingredients.filter((elem, elemIndex) => elem.name !== name)
+            console.log(ingredients)
+            this.setState({ ingredients: ingredients });
+        }
     }
     render() {
+        
         return (
-            <form onSubmit={(e) => {this.props.handleSubmit(e, this.state, this.props.match.params.id)}}>
-                <TitleField label="title" handleChange={this.handleChange} {...this.props} />
-                <ImageField label="image" handlePictureUpload={this.handlePictureUpload}/>
-                <IngredientsField handleInputChangeOnForm={this.handleIngredientInputChange} {...this.props}/>
-
-                {/* <InputField label="title" handleChange={this.handleChange} {...this.props} />
+            <form onSubmit={(e) => {this.props.handleSubmit(e, this.state)}}>
+                <InputField label="title" handleChange={this.handleChange} {...this.props} />
                 <InputField label="image" handleChange={this.handleChange} {...this.props} />
                 <div>Ingredients:
                     {this.state.ingredients.map((i, index) => {
@@ -51,7 +66,7 @@ class RecipeForm extends Component {
                     })}
                 </div>
                 <button onClick={(e) => this.addIngredient(e)}>ADD INGREDIENT</button>
-                <InputField label="description" handleChange={this.handleChange} {...this.props} /> */}
+                <InputField label="description" handleChange={this.handleChange} {...this.props} />
                 <button type="submit">SAVE</button>
                 <Link to="/">Cancel</Link>
             </form>
@@ -64,8 +79,9 @@ RecipeForm.defaultProps = {
         title: '',
         image: '',
         ingredients: [{name: '', amount: ''}],
-        directions: '',
+        description: '',
     }
 }
+
 
 export default RecipeForm;

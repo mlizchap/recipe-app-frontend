@@ -7,10 +7,10 @@ class RecipeList extends Component {
         
        return (
            <div>
-               <div><Link to="/new">ADD NEW</Link></div>
+               <Link to="/new"> ADD NEW</Link>
                 { _.map(this.props.recipes, (r => {
                     return (
-                        <Link to={`/recipe/${r._id}`} key={r._id}><div >{r.title}</div></Link>
+                        <div key={r._id}><Link to={`/recipe/${r._id}`}>{r.title}</Link></div>
                     )})
                 )}
             </div>

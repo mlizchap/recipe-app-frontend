@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+import { DataContext } from '../../DataProvider/DataProvider';
 import RecipeList from '../RecipeList/RecipeList';
 import RecipeDetail from '../RecipeDetail/RecipeDetail';
 import RecipeForm from '../RecipeForm/RecipeForm';
-import { DataContext } from '../DataProvider/DataProvider';
-
 
 class App extends Component {
     render() {

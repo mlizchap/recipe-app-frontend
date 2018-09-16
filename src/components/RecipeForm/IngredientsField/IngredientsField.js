@@ -4,7 +4,7 @@ class IngredientsField extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            ingredients: [{ name: '', amount: ''}]
+            ingredients: [{ name: 'x', amount: ''}]
          };
     }
     addIngredient = (e) => {
@@ -23,10 +23,11 @@ class IngredientsField extends Component {
     handleLocalInputChange = (e, index) => {
         const copy = [...this.state.ingredients]
         copy[index][e.target.name] = e.target.value;
-        this.setState({ ingredients: copy }, this.props.handleInputChangeOnForm(e, index, this.state.ingredients))
+        //console.log(copy)
+        // console.log(this.state)
+        // console.log(index)
+        this.setState({ ingredients: copy }, this.props.handleInputChangeOnForm(this.state.ingredients))
     } 
-
-        
     render() {
         return (
             <div>Ingredients:

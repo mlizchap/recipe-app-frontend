@@ -22,10 +22,8 @@ class RecipeForm extends Component {
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value})
     }
-    handleIngredientInputChange = (e, index, state) => {
-        const copy = [...this.state.ingredients]
-        copy[index][e.target.name] = e.target.value;
-        this.setState({ ingredients: copy }, () => console.log(this.state))
+    handleIngredientInputChange = (state) => {
+        this.setState({ ingredients: state })
     }
     handlePictureUpload = (image) => {
         this.setState({ image })

@@ -1,7 +1,18 @@
+$blue: #1464e5;
+$lightblue: #9bc0fc;
+$white: #e2e2e2;
+$red: #f8afaf;
+$lightred: #f5cdcd;
+$dark: rgb(59, 58, 95);
+$light: rgb(241, 241, 241);
+
 * {
-    font-family: 'Bitter', serif;
+    font-family: serif;
+    margin: 0;
+    padding: 0;
 }
 
 a {
     text-decoration: 'none'
 }
+

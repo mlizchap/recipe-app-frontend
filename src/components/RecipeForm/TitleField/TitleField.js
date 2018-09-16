@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 
+import './TitleField.scss';
+
 const TitleField = (props) => {
     return (
-        <div>{props.label}: 
+        <div className="title-field">
+            <label>Title:</label>
             <input  
                 name={props.label}
                 defaultValue={props.defaultValues[props.label]} 

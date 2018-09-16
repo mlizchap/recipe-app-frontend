@@ -1,0 +1,12 @@
+.app-component {
+    width: 90%;
+    // background-color: lightcyan;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media screen and (min-width: 600px) {
+    .app-component {
+        max-width: 800px;
+    }
+}

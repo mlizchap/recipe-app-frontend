@@ -3,15 +3,19 @@ import { Switch, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import { DataContext } from '../../DataProvider/DataProvider';
+import Header from '../Header/Header';
 import RecipeList from '../RecipeList/RecipeList';
 import RecipeDetail from '../RecipeDetail/RecipeDetail';
 import RecipeForm from '../RecipeForm/RecipeForm';
+import './App.scss';
 
 class App extends Component {
     render() {
         return (
             <div>
-                <h2><Link to="/">Recipe App</Link></h2>                    
+                <Header />              
+            <div className="app-component">
+                        
                     <DataContext.Consumer>
                         {context => {
                             return (
@@ -42,6 +46,7 @@ class App extends Component {
                         }}
                     </DataContext.Consumer>
                                       
+            </div>
             </div>
         );
     }

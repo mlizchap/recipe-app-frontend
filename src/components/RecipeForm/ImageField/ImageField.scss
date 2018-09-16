@@ -1,4 +1,63 @@
+@import '../../../globalStyle.scss';
+
 .imageDrop {
-    width: 100px;
     background-color: lightblue;
+    margin-bottom: 15px;
+    p {
+        background-color: $blue;
+        color: $white;
+        border-radius: 4px;
+        padding: 7px;
+        text-align: center;
+        font-size: 10pT;
+    }
+    p:hover {
+        cursor: pointer;
+        background-color: $lightblue;
+    }
+}
+
+.load-image {
+    &__enterBtn {
+        background-color: $blue;
+        font-size: 10pt;
+        padding: 5px;
+        color: $white;
+        border: none;
+        outline: none;
+        margin-left: 5px;
+        border-radius: 4px;
+    }
+    &__enterBtn:hover {
+        cursor: pointer;
+        background-color: $lightblue;
+    }
+    input {
+        width: 100%;
+    }
+    label {
+        display: inline-block;
+        background-color: grey;
+        width: 10%;
+    }
+}
+
+.picture-display {
+    margin-bottom: 30px;
+    &__changeBtn {
+        border: none;
+        outline: none;
+        background-color: $red;
+        color: $white;
+        width: 130px;
+        padding: 10px;
+        text-align: center;
+        border-radius: 4px;
+        margin-bottom: 30px;
+        margin-right: 20px;
+    }
+    &__changeBtn:hover {
+        cursor: pointer;
+        background-color: $lightred;
+    }
 }

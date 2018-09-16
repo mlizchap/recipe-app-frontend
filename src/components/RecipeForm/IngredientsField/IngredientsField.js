@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './IngredientsField.scss';
+
 class IngredientsField extends Component {
     constructor(props) {
         super(props);
@@ -12,12 +14,10 @@ class IngredientsField extends Component {
             this.setState({ ingredients: this.props.defaultValues.ingredients });
         }
     }
-    addIngredient = (e) => {
-        e.preventDefault();
+    addIngredient = () => {
         this.setState({ ingredients: [...this.state.ingredients, {name: '', amount: ''}]})
     }
-    removeIngredient = (e, name) => {
-        e.preventDefault();
+    removeIngredient = (name) => {
         if (this.state.ingredients.length > 1) {
             let ingredients = [...this.state.ingredients]
             ingredients = this.state.ingredients.filter(elem => elem.name !== name)
@@ -31,27 +31,30 @@ class IngredientsField extends Component {
     } 
     render() {
         return (
-            <div>Ingredients:
+            <div className="ingredients-field">
+            <label>Ingredients:</label>
                 {this.state.ingredients.map((i, index) => {
                     return (
                         <div key={index}>
-                            <input 
-                                name="name" 
-                                // defaultValue={this.props.defaultValues.ingredients[index]["name"]} 
-                                value={i.name} 
-                                onChange={(e) => this.handleLocalInputChange(e,index)} 
-                            />
                             <input 
                                 name="amount" 
                                 // defaultValue={this.props.defaultValues.ingredients[index]["amount"]} 
                                 value={i.amount} 
                                 onChange={(e) => this.handleLocalInputChange(e, index)} 
+                                placeholder="amount"
                             />
-                            <button onClick={(e) =>this.removeIngredient(e, i.name)}>-</button> 
+                            <input 
+                                name="name" 
+                                // defaultValue={this.props.defaultValues.ingredients[index]["name"]} 
+                                value={i.name} 
+                                onChange={(e) => this.handleLocalInputChange(e,index)} 
+                                placeholder="ingredient name"
+                            />
+                            <div className="ingredients-field__deleteBtn" onClick={() =>this.removeIngredient(i.name)}>-</div> 
                         </div>
                     )
                 })}
-                <button onClick={(e) => this.addIngredient(e)}>ADD INGREDIENT</button>
+                <div className="ingredients-field__addBtn" onClick={() => this.addIngredient()}>ADD INGREDIENT</div>
             </div>
         );
     }

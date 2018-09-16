@@ -1,0 +1,37 @@
+@import '../../globalStyle.scss';
+
+.recipe-list-component {
+    &__item {
+        background-color: $blue;
+        color: $white;
+        padding: 10px;
+        margin: 10px 0px;
+        border-radius: 4px;
+    }
+    &__addBtn {
+        background-color: $red;
+        width: 150px;
+        padding: 10px;
+        text-align: center;
+        border-radius: 4px;
+        margin-bottom: 30px;
+    }
+    &__item:hover {
+        background-color: $lightblue;
+    }
+    &__addBtn:hover {
+        background-color: $lightred;
+    }
+
+    button {
+        width: 100px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .recipe-list-component {
+        &__item {
+            width: 400px;
+        }
+    }
+}

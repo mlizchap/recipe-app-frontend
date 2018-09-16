@@ -1,0 +1,14 @@
+@import '../../globalStyle.scss';
+
+.header-component {
+    background-color: $dark;
+   
+    padding: 20px 5%;
+    font-size: 16pt;
+    margin-bottom: 30px;
+    a {
+        color: $white;
+        text-decoration: none;
+    }
+    
+}

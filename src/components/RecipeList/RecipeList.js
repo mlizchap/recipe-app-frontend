@@ -2,15 +2,21 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import _ from 'lodash';
 
+import './RecipeList.scss';
+
 class RecipeList extends Component {
     render() {
         
        return (
-           <div>
-               <Link to="/new"> ADD NEW</Link>
+           <div className="recipe-list-component">
+               <Link to="/new"> <div className="recipe-list-component__addBtn">ADD NEW RECIPE</div></Link>
                 { _.map(this.props.recipes, (r => {
                     return (
-                        <div key={r._id}><Link to={`/recipe/${r._id}`}>{r.title}</Link></div>
+                        <Link to={`/recipe/${r._id}`} key={r._id} >
+                            <div className="recipe-list-component__item">
+                                {r.title}
+                            </div>
+                        </Link>
                     )})
                 )}
             </div>

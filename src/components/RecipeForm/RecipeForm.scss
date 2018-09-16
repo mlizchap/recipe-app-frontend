@@ -1,0 +1,57 @@
+@import '../../globalStyle.scss';
+
+.form-component {
+    color: $dark;
+    // background-color: orange;
+
+    input {
+        outline: none;
+        border: none;
+        font-size: 14pt;
+        padding: 5px;
+        margin-bottom: 15px;
+        border: 1px solid $light;
+        border-radius: 4px;
+    }
+    input::placeholder {
+        font-size: 10pt;
+        color: rgb(153, 153, 153);
+    }
+    label {
+        padding-left: 4px;
+        // background-color: lightgreen;
+        display: block;
+    }
+    &__buttons {
+        margin-top: 30px;
+        display: inline-block;
+    }
+    &__submitBtn {
+        border: none;
+        outline: none;
+        background-color: $blue;
+        color: $white;
+        width: 100px;
+        padding: 10px;
+        text-align: center;
+        border-radius: 4px;
+        margin-bottom: 30px;
+        margin-right: 20px;
+    }
+    &__cancelBtn {
+        border: none;
+        outline: none;
+        background-color: $red;
+        width: 100px;
+        padding: 10px;
+        text-align: center;
+        border-radius: 4px;
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .form-component {
+        max-width: 600px;
+    }
+}

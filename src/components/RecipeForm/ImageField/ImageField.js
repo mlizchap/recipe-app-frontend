@@ -16,7 +16,8 @@ class ImageField extends Component {
          this.imgElem = React.createRef();
     }
     componentWillReceiveProps(nextProps) {
-        if (nextProps) {
+        console.log(nextProps.imageToEdit)
+        if (nextProps.imageToEdit) {
             this.setState({ showEditImage: true })
         }
     }
@@ -29,7 +30,8 @@ class ImageField extends Component {
             .field('file', files[0])
             upload.end((err, response) => {
                 if (err) { console.error(err) }
-                if (response.body.secure_url !== '') {
+                console.log("loading");
+                if (response.body.secure_url !== '' && response.status === 200) {
                     this.setState({ urlToSend: response.body.secure_url }, () => {
                         if (this.state.urlToSend) {
                             this.props.handlePictureUpload(this.state.urlToSend)
@@ -54,22 +56,26 @@ class ImageField extends Component {
     render() {
         return (
             <div>
-                Image
+                Image:
                 {(this.state.urlToSend || this.state.showEditImage) ? 
-                    <div>
+                    <div className="picture-display">
                         <img ref={this.imgElem} src={`${this.props.imageToEdit || this.state.urlToSend}`} width="150px" />
-                        <div onClick={this.changePicture}>change picture</div>
+                        <div className="picture-display__changeBtn" onClick={this.changePicture}>change picture</div>
                     </div>
-                    : <div>
-                        Link: <input value={this.state.userInputURL} onChange={(e) => this.setState({ userInputURL: e.target.value})}/>
-                        <button onClick={this.userInputEnter}>ENTER</button>
-                        <div>OR</div>
+                    : <div className="load-image">
+                        <input 
+                            value={this.state.userInputURL} 
+                            onChange={(e) => this.setState({ userInputURL: e.target.value})}
+                            placeholder="link url"
+                            onBlur={this.userInputEnter}
+                        />
+                        {/* <button className="load-image__enterBtn" onClick={this.userInputEnter}>ENTER</button> */}
                         <Dropzone
                             className="imageDrop"
                             multiple={false}
                             accept="image/*"
                             onDrop={this.onImageDrop}>
-                            <p>Upload</p>
+                            <p>UPLOAD FROM COMPUTER</p>
                         </Dropzone>
                     </div>
                 }

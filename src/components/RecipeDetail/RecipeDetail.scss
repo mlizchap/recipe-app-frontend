@@ -1,0 +1,66 @@
+@import '../../globalStyle.scss';
+
+
+.recipe-detail-component {
+    h2 {
+        font-size: 28pt;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    &__title {
+        font-size: 18pt;
+        margin-bottom: 15px;
+        // margin-top: 20px;
+    }
+    &__section1 {
+        // width: 60%;        
+        background-color: $light;
+        padding: 10px;
+        margin: 30px auto;
+        border-radius: 4px;
+    }
+    &__section2 {
+        background-color: $light;
+        padding: 10px;
+        margin: 30px 0;
+        border-radius: 4px;
+    }
+    &__imageContainer {
+        text-align: center;
+    }
+    &__ingredientList {
+        margin-left: 20px;
+    }
+    &__btnSection {
+        margin-top: 20px;
+        text-align: center;
+    }
+    &__btn {
+        background-color: $blue;
+        border-radius: 4px;
+        color: $white;
+        margin: 10px;
+        padding: 5px;
+        text-align: center;
+    }
+    &__btn:hover {
+        background-color: $lightblue;
+        cursor: pointer;
+    }
+    a {
+        text-decoration: none;
+        color: $white;
+    }
+    img {
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .recipe-detail-component  {
+        &__btn {
+            display: inline-block;
+            width: 100px;
+        }
+    }
+}

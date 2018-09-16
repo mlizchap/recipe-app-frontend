@@ -1,0 +1,13 @@
+@import '../../../globalStyle.scss';
+
+.directions-input {
+    margin-top: 30px;
+    textarea {
+        width: 100%;
+        font-size: 14pt;
+        border: none;
+        outline: none;
+        border: 1px solid $light;
+    }
+    
+}

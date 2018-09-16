@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import TitleField from './TitleField/TitleField';
 import ImageField from './ImageField/ImageField';
 import IngredientsField from './IngredientsField/IngredientsField';
+import DirectionsField from './DirectionsField/DirectionsField';
 
 class RecipeForm extends Component {
     constructor(props) {
@@ -34,7 +35,7 @@ class RecipeForm extends Component {
                 <TitleField label="title" handleChange={this.handleChange} {...this.props} />
                 <ImageField label="image" handlePictureUpload={this.handlePictureUpload}/>
                 <IngredientsField handleInputChangeOnForm={this.handleIngredientInputChange} {...this.props}/>
-
+                <DirectionsField label="directions" {...this.props}/>
                 {/* <InputField label="title" handleChange={this.handleChange} {...this.props} />
                 <InputField label="image" handleChange={this.handleChange} {...this.props} />
                 <div>Ingredients:

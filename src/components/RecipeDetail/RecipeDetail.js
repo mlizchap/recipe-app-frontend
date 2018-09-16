@@ -25,10 +25,10 @@ class RecipeDetail extends Component {
                 </div>
                 <div className="recipe-detail-component__btnSection">
                     <div className="recipe-detail-component__btnBack">
-                        <Link to="/">BACK</Link>
+                        <Link to="/recipe-app-frontend">BACK</Link>
                     </div>
                     <div className="recipe-detail-component__btnEdit">
-                        <Link to={`/edit/${this.props.recipe._id}`}>EDIT</Link>
+                        <Link to={`/recipe-app-frontend/edit/${this.props.recipe._id}`}>EDIT</Link>
                     </div>
                     <div 
                         className="recipe-detail-component__btnDelete" 

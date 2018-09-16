@@ -15,32 +15,31 @@ class App extends Component {
             <div>
                 <Header />              
             <div className="app-component">
-                        
                     <DataContext.Consumer>
                         {context => {
                             return (
                                 <Switch>
-                                    <Route path="/new" render={(props) => 
+                                    <Route path="/recipe-app-frontend/new" render={(props) => 
                                         <RecipeForm 
                                             handleSubmit={context.handleSubmit} 
                                             {...props}
                                         />} 
                                     />
-                                    <Route path="/edit/:id" render={(props) => (
+                                    <Route path="/recipe-app-frontend/edit/:id" render={(props) => (
                                         <RecipeForm 
                                             handleSubmit={context.handleEdit} 
                                             defaultValues={context.state.recipes[props.match.params.id]}
                                             {...props}
                                         />
                                     )} />
-                                    <Route path="/recipe/:id" render={(props) => 
+                                    <Route path="/recipe-app-frontend/recipe/:id" render={(props) => 
                                         <RecipeDetail 
                                             handleDelete={context.handleDelete}
                                             handleEdit={context.handleEdit}
                                             recipe={context.state.recipes[props.match.params.id]} 
                                             {...props}/>} 
                                         />
-                                    <Route exact path="/" render={() => <RecipeList recipes={context.state.recipes} /> } />                           
+                                    <Route exact path="/recipe-app-frontend" render={() => <RecipeList recipes={context.state.recipes} /> } />                           
                                 </Switch> 
                             )      
                         }}

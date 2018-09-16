@@ -42,7 +42,7 @@ class DataProvider extends Component {
 
     handleRedirect = (res) => {
         if (res.status === 200) {
-            window.location.href = `http://localhost:3000`
+            window.location.href = `https://mlizchap.github.io/recipe-app-frontend`
         }
     }
     render() {

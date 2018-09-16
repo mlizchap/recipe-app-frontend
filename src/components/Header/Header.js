@@ -6,7 +6,7 @@ import './Header.scss';
 export default () => {
     return (
         <div className="header-component">
-            <Link to="/">Recipes</Link>
+            <Link to="/recipe-app-frontend">Recipes</Link>
         </div>
     )
 }

@@ -41,7 +41,7 @@ class RecipeForm extends Component {
                 <DirectionsField label="directions" handleChange={this.handleChange} {...this.props}/>
                 <div className="form-component__buttons">
                     <button className="form-component__submitBtn" type="submit">SAVE</button>
-                    <Link to="/"><button className="form-component__cancelBtn">CANCEL</button></Link>
+                    <Link to="/recipe-app-frontend"><button className="form-component__cancelBtn">CANCEL</button></Link>
                 </div>
             </form>
             </div>

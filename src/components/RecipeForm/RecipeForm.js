@@ -33,24 +33,9 @@ class RecipeForm extends Component {
         return (
             <form onSubmit={(e) => {this.props.handleSubmit(e, this.state, this.props.match.params.id)}}>
                 <TitleField label="title" handleChange={this.handleChange} {...this.props} />
-                <ImageField label="image" handlePictureUpload={this.handlePictureUpload}/>
+                <ImageField label="image" imageToEdit={this.state.image} handlePictureUpload={this.handlePictureUpload} />
                 <IngredientsField handleInputChangeOnForm={this.handleIngredientInputChange} {...this.props}/>
-                <DirectionsField label="directions" {...this.props}/>
-                {/* <InputField label="title" handleChange={this.handleChange} {...this.props} />
-                <InputField label="image" handleChange={this.handleChange} {...this.props} />
-                <div>Ingredients:
-                    {this.state.ingredients.map((i, index) => {
-                        return (
-                            <div key={index}>
-                                <input name="name" value={i.name} onChange={(e) => this.handleInputChange(e, index)} />
-                                <input name="amount" value={i.amount} onChange={(e) => this.handleInputChange(e, index)} />
-                                <button onClick={(e) =>this.removeIngredient(e, i.name)}>-</button> 
-                            </div>
-                        )
-                    })}
-                </div>
-                <button onClick={(e) => this.addIngredient(e)}>ADD INGREDIENT</button>
-                <InputField label="description" handleChange={this.handleChange} {...this.props} /> */}
+                <DirectionsField label="directions" handleChange={this.handleChange} {...this.props}/>
                 <button type="submit">SAVE</button>
                 <Link to="/">Cancel</Link>
             </form>

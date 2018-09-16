@@ -7,6 +7,12 @@ class IngredientsField extends Component {
             ingredients: [{ name: '', amount: ''}]
          };
     }
+    componentDidMount() {
+        if (this.props.defaultValues.ingredients) {
+            console.log(this.props.defaultValues.ingredients)
+            this.setState({ ingredients: this.props.defaultValues.ingredients });
+        }
+    }
     addIngredient = (e) => {
         e.preventDefault();
         this.setState({ ingredients: [...this.state.ingredients, {name: '', amount: ''}]})
@@ -30,8 +36,18 @@ class IngredientsField extends Component {
                 {this.state.ingredients.map((i, index) => {
                     return (
                         <div key={index}>
-                            <input name="name" value={i.name} onChange={(e) => this.handleLocalInputChange(e,index)} />
-                            <input name="amount" value={i.amount} onChange={(e) => this.handleLocalInputChange(e, index)} />
+                            <input 
+                                name="name" 
+                                // defaultValue={this.props.defaultValues.ingredients[index]["name"]} 
+                                value={i.name} 
+                                onChange={(e) => this.handleLocalInputChange(e,index)} 
+                            />
+                            <input 
+                                name="amount" 
+                                // defaultValue={this.props.defaultValues.ingredients[index]["amount"]} 
+                                value={i.amount} 
+                                onChange={(e) => this.handleLocalInputChange(e, index)} 
+                            />
                             <button onClick={(e) =>this.removeIngredient(e, i.name)}>-</button> 
                         </div>
                     )

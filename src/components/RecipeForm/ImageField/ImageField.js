@@ -41,9 +41,9 @@ class ImageField extends Component {
         return (
             <div>
                 Image
-                {(this.state.urlToSend) ? 
+                {(this.state.urlToSend || this.props.imageToEdit) ? 
                     <div>
-                        <img src={`${this.state.urlToSend}`} width="150px" />
+                        <img src={`${this.props.imageToEdit || this.state.urlToSend}`} width="150px" />
                         <div onClick={() => this.setState({ urlToSend: ''})}>change picture</div>
                     </div>
                     :

@@ -36,7 +36,6 @@ class DataProvider extends Component {
 
     editData = (e, values, id) => {
         e.preventDefault();
-        console.log("EDIT");
         axios.put(`${baseURL}/${id}`, values)
             .then((res) => this.handleRedirect(res));
     }

@@ -2,6 +2,7 @@
   "name": "recipe-app-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://mlizchap.github.io/recipe-app-frontend",
   "dependencies": {
     "@material-ui/core": "^3.0.3",
     "axios": "^0.18.0",
@@ -17,6 +18,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build" 
+  },
+  "devDependencies": {
+    "gh-pages": "^2.0.0"
   }
 }

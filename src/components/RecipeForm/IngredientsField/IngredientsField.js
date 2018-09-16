@@ -38,14 +38,14 @@ class IngredientsField extends Component {
                         <div key={index}>
                             <input 
                                 name="amount" 
-                                // defaultValue={this.props.defaultValues.ingredients[index]["amount"]} 
+                                autocomplete="off"
                                 value={i.amount} 
                                 onChange={(e) => this.handleLocalInputChange(e, index)} 
                                 placeholder="amount"
                             />
                             <input 
                                 name="name" 
-                                // defaultValue={this.props.defaultValues.ingredients[index]["name"]} 
+                                autocomplete="off"
                                 value={i.name} 
                                 onChange={(e) => this.handleLocalInputChange(e,index)} 
                                 placeholder="ingredient name"

@@ -7,6 +7,7 @@ const TitleField = (props) => {
         <div className="title-field">
             <label>Title:</label>
             <input  
+                autocomplete="off"
                 name={props.label}
                 defaultValue={props.defaultValues[props.label]} 
                 onChange={props.handleChange} 

@@ -7,6 +7,13 @@
 
 @media screen and (min-width: 600px) {
     .app-component {
-        max-width: 800px;
+        // max-width: 1200px;
+        width: 70%;
+        a {
+            text-decoration: none;
+        }
+        a, a:visited, a:hover, a:active {
+            color: inherit;
+          }
     }
 }

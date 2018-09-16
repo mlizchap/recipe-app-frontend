@@ -8,17 +8,23 @@ class RecipeList extends Component {
     render() {
         
        return (
-           <div className="recipe-list-component">
-               <Link to="/new"> <div className="recipe-list-component__addBtn">ADD NEW RECIPE</div></Link>
-                { _.map(this.props.recipes, (r => {
-                    return (
-                        <Link to={`/recipe/${r._id}`} key={r._id} >
-                            <div className="recipe-list-component__item">
-                                {r.title}
+           <div>
+               <div className="recipe-list-component__addBtn"><Link to="/new"> ADD NEW RECIPE</Link></div>
+            <div className="recipe-list-component">
+                
+                    { _.map(this.props.recipes, (r => {
+                        return (
+                            <div className="list-item">
+                                <Link to={`/recipe/${r._id}`} key={r._id} >
+                                    <img src={r.image} width="300px" />
+                                    <div className="list-item__title" className="recipe-list-component__item">
+                                        {r.title}
+                                    </div>
+                                </Link>
                             </div>
-                        </Link>
-                    )})
-                )}
+                        )})
+                    )}
+                </div>
             </div>
        ) 
             

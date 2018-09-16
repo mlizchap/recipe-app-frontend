@@ -1,23 +1,17 @@
 @import '../../globalStyle.scss';
 
 .recipe-list-component {
-    &__item {
-        background-color: $blue;
-        color: $white;
-        padding: 10px;
-        margin: 10px 0px;
-        border-radius: 4px;
-    }
+    
+
     &__addBtn {
         background-color: $red;
-        width: 150px;
+        color: $white;
+        width: 90%;
         padding: 10px;
         text-align: center;
         border-radius: 4px;
         margin-bottom: 30px;
-    }
-    &__item:hover {
-        background-color: $lightblue;
+        display: block;
     }
     &__addBtn:hover {
         background-color: $lightred;
@@ -28,10 +22,50 @@
     }
 }
 
+.list-item {
+    
+    
+    background-color: $light;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    img {
+        width: 90%;
+    }
+    &__title {
+        width: 90%;
+        font-family: 'Cabin Sketch', cursive;
+    }
+    a {
+        text-decoration: none;
+    }
+    &:hover {
+        background-color: $highlight;
+    }
+}
+
 @media screen and (min-width: 600px) {
+    div {
+        box-sizing: border-box;
+    }
     .recipe-list-component {
-        &__item {
-            width: 400px;
+        -moz-column-width: 250px;
+        -webkit-column-width: 250px;
+        column-width: 250px;
+        -moz-column-gap: 1em;
+        -webkit-column-gap:1em;
+        column-gap: 1em;
+        margin: 5px;
+        &__addBtn {
+            width: 200px;
         }
     }
+    .list-item {
+        display: inline-block;
+        width: 100%;
+        padding: 15px 5px;
+        margin: 5px;
+        font-size: 14pt;
+    }
+
 }

@@ -45,7 +45,10 @@ class ImageField extends Component {
     userInputEnter = (e) => {
         e.preventDefault();
         console.log("enter")
-        this.setState({ urlToSend: this.state.userInputURL})
+        this.setState({ urlToSend: this.state.userInputURL}, () => {
+            this.props.handlePictureUpload(this.state.urlToSend)
+        })
+        
     }
     changePicture = () => {
         this.setState({

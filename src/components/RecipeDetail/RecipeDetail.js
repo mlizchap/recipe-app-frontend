@@ -9,10 +9,10 @@ class RecipeDetail extends Component {
             <div className="recipe-detail-component">
                 <h2>{this.props.recipe.title}</h2>
                 <div className="recipe-detail-component__imageContainer">
-                    <img src={`${this.props.recipe.image}`} width="150px"/>
+                    <img src={`${this.props.recipe.image}`} width="300px"/>
                 </div>
                 <div className="recipe-detail-component__section1">
-                    <h3 className="recipe-detail-component__title">Ingredients:</h3>
+                    <div className="recipe-detail-component__title">Ingredients:</div>
                         {this.props.recipe.ingredients.map(i => {
                             return (
                                 <div key={i.name} className="recipe-detail-component__ingredientList">- {i.amount} {i.name}</div>
@@ -24,14 +24,14 @@ class RecipeDetail extends Component {
                         <div>{this.props.recipe.directions}</div>
                 </div>
                 <div className="recipe-detail-component__btnSection">
-                    <div className="recipe-detail-component__btn">
+                    <div className="recipe-detail-component__btnBack">
                         <Link to="/">BACK</Link>
                     </div>
-                    <div className="recipe-detail-component__btn">
+                    <div className="recipe-detail-component__btnEdit">
                         <Link to={`/edit/${this.props.recipe._id}`}>EDIT</Link>
                     </div>
                     <div 
-                        className="recipe-detail-component__btn" 
+                        className="recipe-detail-component__btnDelete" 
                         onClick={() => this.props.handleDelete(this.props.recipe._id)}>
                             DELETE
                     </div>

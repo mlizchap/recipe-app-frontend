@@ -2,6 +2,7 @@
 
 .form-component {
     color: $dark;
+    font-family: 'Nunito Sans', sans-serif;
     // background-color: orange;
 
     input {
@@ -37,16 +38,25 @@
         border-radius: 4px;
         margin-bottom: 30px;
         margin-right: 20px;
+        &:hover {
+            cursor: pointer;
+            background-color: $lightblue;
+        }
     }
     &__cancelBtn {
         border: none;
         outline: none;
         background-color: $red;
+        color: $white;
         width: 100px;
         padding: 10px;
         text-align: center;
         border-radius: 4px;
         margin-bottom: 30px;
+        &:hover {
+            cursor: pointer;
+            background-color: $lightred;
+        }
     }
 }
 

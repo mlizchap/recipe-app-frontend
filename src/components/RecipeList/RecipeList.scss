@@ -1,7 +1,7 @@
 @import '../../globalStyle.scss';
 
 .recipe-list-component {
-    
+    font-family: 'Cabin Sketch', cursive;
 
     &__addBtn {
         background-color: $red;
@@ -12,6 +12,7 @@
         border-radius: 4px;
         margin-bottom: 30px;
         display: block;
+        font-family: 'Nunito Sans', sans-serif;
     }
     &__addBtn:hover {
         background-color: $lightred;
